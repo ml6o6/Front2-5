@@ -1,0 +1,44 @@
+// frontend/src/layouts/MainLayout.jsx
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import { IconLogout } from '../components/common/Icons';
+
+export default function MainLayout() {
+  const { user, logout, isAdmin } = useAuth();
+  const navigate = useNavigate();
+
+  function onLogout() {
+    logout();
+    navigate('/login');
+  }
+
+  return (
+    <div className="layout">
+      <header className="navbar">
+        <div className="navbar__brand">ДТП-Аналитика</div>
+        <nav className="navbar__links">
+          <NavLink to="/drivers">Водители</NavLink>
+          <NavLink to="/cars">Авто</NavLink>
+          <NavLink to="/accidents">ДТП</NavLink>
+          <NavLink to="/map">Карта</NavLink>
+          <NavLink to="/statistics">Статистика</NavLink>
+          <NavLink to="/reports">Отчёты</NavLink>
+          {isAdmin && <NavLink to="/admin">Пользователи</NavLink>}
+        </nav>
+        <div className="navbar__user">
+          <div className="avatar">{user?.username?.[0]?.toUpperCase() || '?'}</div>
+          <div className="navbar__userinfo">
+            <div>{user?.username}</div>
+            <small className={`role role--${user?.role}`}>{user?.role}</small>
+          </div>
+          <button className="btn btn--icon" onClick={onLogout} title="Выйти">
+            <IconLogout />
+          </button>
+        </div>
+      </header>
+      <main className="main">
+        <Outlet />
+      </main>
+    </div>
+  );
+}

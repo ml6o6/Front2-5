@@ -1,0 +1,51 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.vite
+
+# Environment files
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.python-version
+venv/
+ENV/
+env/
+.venv/
+venv.bak/
+
+# Build outputs
+dist/
+build/
+htmlcov/
+coverage.xml
+.coverage
+.coverage.*
+*.egg-info/
+pip-wheel-metadata/
+
+# Docker
+docker-compose.override.yml
+/docker-compose.*.yml
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
